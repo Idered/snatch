@@ -1,0 +1,347 @@
+<UserControl
+  x:Class="Snatch.Controls.ShortcutList"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="clr-namespace:Snatch"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  d:DesignWidth="484"
+  mc:Ignorable="d">
+
+  <UserControl.Resources>
+    <Style x:Key="ShortcutStyle" TargetType="{x:Type Border}">
+      <Style.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+          <Setter Property="HorizontalAlignment" Value="Center" />
+          <Setter Property="VerticalAlignment" Value="Center" />
+          <Setter Property="FontSize" Value="11" />
+          <Setter Property="FontWeight" Value="Medium" />
+          <Setter Property="Foreground" Value="{StaticResource Primary300}" />
+        </Style>
+      </Style.Resources>
+      <Setter Property="MinWidth" Value="17" />
+      <Setter Property="HorizontalAlignment" Value="Left" />
+      <Setter Property="Height" Value="18" />
+      <Setter Property="CornerRadius" Value="2" />
+      <Setter Property="Background" Value="{StaticResource Primary600}" />
+      <Setter Property="Padding" Value="4,0,4,0" />
+    </Style>
+
+    <Style x:Key="ShortcutsStyle" TargetType="Grid">
+      <Setter Property="Margin" Value="16,0,16,16" />
+      <Setter Property="Visibility" Value="Visible" />
+      <Style.Triggers>
+        <DataTrigger Binding="{local:SettingBinding ShowShortcuts}" Value="False">
+          <Setter Property="Visibility" Value="Collapsed" />
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+  </UserControl.Resources>
+
+  <Grid Style="{StaticResource ShortcutsStyle}">
+    <Border
+      Grid.Row="0"
+      Grid.ColumnSpan="2"
+      Height="1"
+      Margin="-16,8,-16,8"
+      Background="{StaticResource Primary900}"
+      Focusable="False"
+      SnapsToDevicePixels="True" />
+
+    <Border Grid.Row="1" Grid.Column="0">
+      <TextBlock
+        FontSize="14"
+        FontWeight="SemiBold"
+        Foreground="{StaticResource Primary300}">
+        Essential Keyboard Shortcuts
+      </TextBlock>
+    </Border>
+
+
+    <Border Grid.Row="2" Grid.Column="0">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="90" />
+          <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+          Grid.Column="0"
+          VerticalAlignment="Center"
+          Foreground="{StaticResource Gray600}">
+          Clear
+        </TextBlock>
+        <Grid Grid.Column="1" HorizontalAlignment="Right">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <Border Grid.Column="0" Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Ctrl
+            </TextBlock>
+          </Border>
+          <Border
+            Grid.Column="1"
+            Margin="4,0,0,0"
+            Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Shift
+            </TextBlock>
+          </Border>
+          <Border
+            Grid.Column="3"
+            Margin="4,0,0,0"
+            Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              L
+            </TextBlock>
+          </Border>
+        </Grid>
+      </Grid>
+
+    </Border>
+
+    <Border Grid.Row="2" Grid.Column="1">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="90" />
+          <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+          Grid.Column="0"
+          VerticalAlignment="Center"
+          Foreground="{StaticResource Gray600}">
+          Pin/Unpin
+        </TextBlock>
+        <Grid Grid.Column="1" HorizontalAlignment="Right">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <Border Grid.Column="0" Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Ctrl
+            </TextBlock>
+          </Border>
+          <Border
+            Grid.Column="1"
+            Margin="4,0,0,0"
+            Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              P
+            </TextBlock>
+          </Border>
+        </Grid>
+      </Grid>
+    </Border>
+
+    <Border Grid.Row="4" Grid.Column="0">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="90" />
+          <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+          Grid.Column="0"
+          VerticalAlignment="Center"
+          Foreground="{StaticResource Gray600}">
+          Quit
+        </TextBlock>
+        <Grid Grid.Column="1" HorizontalAlignment="Right">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <Border Grid.Column="0" Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Ctrl
+            </TextBlock>
+          </Border>
+          <Border
+            Grid.Column="1"
+            Margin="4,0,0,0"
+            Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Q
+            </TextBlock>
+          </Border>
+        </Grid>
+      </Grid>
+    </Border>
+
+    <Border Grid.Row="3" Grid.Column="1">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="90" />
+          <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+          Grid.Column="0"
+          VerticalAlignment="Center"
+          Foreground="{StaticResource Gray600}">
+          Pin/Unpin all
+        </TextBlock>
+        <Grid Grid.Column="1" HorizontalAlignment="Right">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <Border Grid.Column="0" Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Ctrl
+            </TextBlock>
+          </Border>
+          <Border
+            Grid.Column="1"
+            Margin="4,0,0,0"
+            Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Shift
+            </TextBlock>
+          </Border>
+          <Border
+            Grid.Column="2"
+            Margin="4,0,0,0"
+            Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              P
+            </TextBlock>
+          </Border>
+        </Grid>
+      </Grid>
+    </Border>
+
+    <Border Grid.Row="3" Grid.Column="0">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="90" />
+          <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+          Grid.Column="0"
+          VerticalAlignment="Center"
+          Foreground="{StaticResource Gray600}">
+          Remove entry
+        </TextBlock>
+        <Grid Grid.Column="1" HorizontalAlignment="Right">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <Border Grid.Column="0" Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Ctrl
+            </TextBlock>
+          </Border>
+          <Border
+            Grid.Column="1"
+            Margin="4,0,0,0"
+            Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Del
+            </TextBlock>
+          </Border>
+        </Grid>
+      </Grid>
+    </Border>
+
+    <Border Grid.Row="4" Grid.Column="1">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="90" />
+          <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+          Grid.Column="0"
+          VerticalAlignment="Center"
+          Foreground="{StaticResource Gray600}">
+          Toggle help
+        </TextBlock>
+        <Grid Grid.Column="1" HorizontalAlignment="Right">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <Border Grid.Column="0" Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Ctrl
+            </TextBlock>
+          </Border>
+          <Border
+            Grid.Column="1"
+            Margin="4,0,0,0"
+            Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              /
+            </TextBlock>
+          </Border>
+        </Grid>
+      </Grid>
+    </Border>
+
+    <Border Grid.Row="5" Grid.Column="0">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="90" />
+          <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+          Grid.Column="0"
+          VerticalAlignment="Center"
+          Foreground="{StaticResource Gray600}">
+          Toggle Snatch
+        </TextBlock>
+        <Grid Grid.Column="1" HorizontalAlignment="Right">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <Border Grid.Column="0" Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Ctrl
+            </TextBlock>
+          </Border>
+          <Border
+            Grid.Column="1"
+            Margin="4,0,0,0"
+            Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              Shift
+            </TextBlock>
+          </Border>
+          <Border
+            Grid.Column="2"
+            Margin="4,0,0,0"
+            Style="{DynamicResource ShortcutStyle}">
+            <TextBlock>
+              V
+            </TextBlock>
+          </Border>
+        </Grid>
+      </Grid>
+    </Border>
+
+    <Grid.Resources>
+      <Style TargetType="Border">
+        <Setter Property="Padding" Value="8" />
+      </Style>
+    </Grid.Resources>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="50*" />
+      <ColumnDefinition Width="50*" />
+    </Grid.ColumnDefinitions>
+
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+  </Grid>
+</UserControl>
