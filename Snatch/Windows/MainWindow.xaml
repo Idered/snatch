@@ -207,7 +207,6 @@
         FocusManager.IsFocusScope="False"
         Focusable="False"
         ItemsSource="{Binding Entries}"
-        PreviewKeyUp="OnItemKeyUp"
         PreviewMouseLeftButtonUp="OnItemMouseDown"
         ScrollViewer.CanContentScroll="False"
         ScrollViewer.HorizontalScrollBarVisibility="Disabled"

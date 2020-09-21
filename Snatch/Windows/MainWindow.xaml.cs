@@ -149,6 +149,7 @@ namespace Snatch
           Entry entry = new Entry() { Content = clipboard.ClipboardText };
           db.Add(entry);
           this.Entries.Insert(0, entry);
+          this.uiItems.SelectedIndex = 0;
           db.SaveChanges();
         }
       }
@@ -156,16 +157,6 @@ namespace Snatch
 
     private void OnItemMouseDown(object sender, MouseButtonEventArgs e)
     {
-      HandleSelectedItem(sender);
-    }
-
-    private void OnItemKeyUp(object sender, KeyEventArgs e)
-    {
-      if (Key.Return != e.Key)
-      {
-        return;
-      }
-
       HandleSelectedItem(sender);
     }
 
@@ -271,6 +262,12 @@ namespace Snatch
       }
 
       this.HasVisibleEntries = visibleCount > 0;
+
+      if (this.uiItems.SelectedItem == null && this.Entries.Count() > 0)
+      {
+        this.uiItems.SelectedIndex = 0;
+        this.uiItems.ScrollIntoView(this.uiItems.SelectedItem);
+      }
     }
 
     private void QueryInput_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -287,14 +284,20 @@ namespace Snatch
       switch (e.Key)
       {
         case Key.Delete:
-          if (Keyboard.IsKeyDown(Key.LeftCtrl))
+          if (Keyboard.IsKeyDown(Key.LeftCtrl) && selected != null)
           {
             int lastIndex = selectedVisibleIndex;
             db.Entries.Remove(selected);
             db.SaveChangesAsync();
             this.Entries.RemoveAt(uiItems.SelectedIndex);
-            uiItems.SelectedItem = visibleEntries.ElementAt(Math.Min(lastIndex+1, visibleEntries.Count() - 1));
-            uiItems.ScrollIntoView(uiItems.SelectedItem);
+
+            visibleEntries = this.Entries.Where(item => item.IsVisible == true).ToList();
+
+            if (visibleEntries.Count() > 0)
+            {
+              uiItems.SelectedItem = visibleEntries.ElementAt(Math.Min(lastIndex, visibleEntries.Count() - 1));
+              uiItems.ScrollIntoView(uiItems.SelectedItem);
+            }
           }
           break;
         case Key.PageDown:
